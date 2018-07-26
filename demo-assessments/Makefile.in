@@ -1,0 +1,14 @@
+CS1101S_REPO_LOC=
+
+build: Dockerfile secrets.exs .env docker-run.sh
+	docker build -t cadet .
+
+run:
+	docker run \
+		-p 80:80 -p 4000:4001 \
+		--mount type=bind,source=$(CS1101S_REPO_LOC),target=/cs1101s-host,readonly \
+		cadet
+
+all:
+	make build
+	make run

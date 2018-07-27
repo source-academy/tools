@@ -9,14 +9,14 @@ sed "s|CS1101S_REPO_LOC=.*|CS1101S_REPO_LOC=$PATH_REPO_ABS|" ./Makefile.in > Mak
 # Configure the IVLE key (backend, frontend)
 read -p "Enter your IVLE key (https://ivle.nus.edu.sg/LAPI/) > " IVLE_KEY
 [ -z "$IVLE_KEY" ] && echo "  Cannot be empty." && exit 1
-sed -i "s/    ivle_key:.*/    ivle_key: \"$IVLE_KEY\"/" secrets.exs
-sed -i "s/REACT_APP_IVLE_KEY=.*/REACT_APP_IVLE_KEY=$IVLE_KEY/" .env
+sed "s/    ivle_key:.*/    ivle_key: \"$IVLE_KEY\"/" secrets.exs > secrets.exs
+sed "s/REACT_APP_IVLE_KEY=.*/REACT_APP_IVLE_KEY=$IVLE_KEY/" .env > .env
 
 # Configure the guest account (TODO: remove this need)
 read -p "Enter the IVLE guest (or any) account user ID (leave empty to skip) > " GUEST_USERNAME
 read -p "Enter the IVLE guest (or any) account password (leave empty to skip) > " GUEST_PASSWORD
-sed -i "s/    guest_username.*/    guest_username: \"$GUEST_USERNAME\",/" secrets.exs
-sed -i "s/    guest_password.*/    guest_password: \"$GUEST_PASSWORD\",/" secrets.exs
+sed "s/    guest_username.*/    guest_username: \"$GUEST_USERNAME\",/" secrets.exs > secrets.exs
+sed "s/    guest_password.*/    guest_password: \"$GUEST_PASSWORD\",/" secrets.exs > secrets.exs
 
 echo "  Configured the cs1101s repository to be at ${PATH_REPO_ABS}."
 echo "  Configured the IVLE key to be at ${IVLE_KEY}."

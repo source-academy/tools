@@ -1,10 +1,9 @@
 #! /usr/bin/env sh
 
 # Configure the cs1101s repository URL (backend)
-read -p "Enter the path to your cs1101s repository > " PATH_REPO_REL
-[ -z "$PATH_REPO_REL" ] && echo "  Cannot be empty." && exit 1
-PATH_REPO_ABS=`readlink "${PATH_REPO_REL}"`
-sed "s|CS1101S_REPO_LOC=.*|CS1101S_REPO_LOC=$PATH_REPO_ABS|" ./Makefile.in > Makefile
+read -p "Enter the absolute path to your cs1101s repository > " REPO_PATH
+[ -z "$REPO_PATH" ] && echo "  Cannot be empty." && exit 1
+sed "s|CS1101S_REPO_LOC=.*|CS1101S_REPO_LOC=$REPO_PATH|" ./Makefile.in > Makefile
 
 # Configure the IVLE key (backend, frontend)
 read -p "Enter your IVLE key (https://ivle.nus.edu.sg/LAPI/) > " IVLE_KEY
@@ -18,7 +17,7 @@ read -p "Enter the IVLE guest (or any) account password (leave empty to skip) > 
 sed "s/    guest_username.*/    guest_username: \"$GUEST_USERNAME\",/" secrets.exs > secrets.exs
 sed "s/    guest_password.*/    guest_password: \"$GUEST_PASSWORD\",/" secrets.exs > secrets.exs
 
-echo "  Configured the cs1101s repository to be at ${PATH_REPO_ABS}."
+echo "  Configured the cs1101s repository to be at ${REPO_PATH}."
 echo "  Configured the IVLE key to be at ${IVLE_KEY}."
 [ -z "$GUEST_USERNAME" ] || \
     echo "  Configured the guest username to be ${GUEST_USERNAME}."

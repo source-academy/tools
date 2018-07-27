@@ -3,7 +3,7 @@
 # Configure the cs1101s repository URL (backend)
 read -p "Enter the path to your cs1101s repository > " PATH_REPO_REL
 [ -z "$PATH_REPO_REL" ] && echo "  Cannot be empty." && exit 1
-PATH_REPO_ABS=`readlink -f "${PATH_REPO_REL}"`
+PATH_REPO_ABS=`readlink "${PATH_REPO_REL}"`
 sed "s|CS1101S_REPO_LOC=.*|CS1101S_REPO_LOC=$PATH_REPO_ABS|" ./Makefile.in > Makefile
 
 # Configure the IVLE key (backend, frontend)

@@ -4,8 +4,7 @@ demo-assessments
 This directory contains a docker image which, when built and run, deploys a
 local copy of cadet_ and `cadet-frontend`_, providing a fully functional *Source
 Academy* on your machine. This version of Source Academy pulls from a local
-cs1101s repository, allowing you to test the assessment and story XMLs you
-author.
+cs1101s repository, allowing you to test the assessment XMLs you author.
 
 .. _cadet: https://github.com/source-academy/cadet/
 .. _`cadet-frontend`: https://github.com/source-academy/cadet-frontend/
@@ -69,6 +68,13 @@ For example,
 
 Development
 ===========
+**On the command** ``make run`` **the docker image makes a copy of your local
+cs1101s repository and treats it as if it was the canonical master branch of the
+cs1101s repository.** This means that any changes made after the ``make run``
+command will not be reflected in the docker container. You will have to kill the
+container and instantiate a new one in order to to see any new changes to your
+local cs1101s repository since the last ``make run`` command.
+
 cadet_ and `cadet-frontend`_ developers may wish to use this image to test their
 changes. In that case, add the following line in the Dockerfile, after the ``git
 clone`` step (and after the ``WORKDIR`` has been set correctly) of the relevant

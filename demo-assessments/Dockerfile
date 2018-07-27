@@ -2,7 +2,7 @@ FROM bitwalker/alpine-elixir:1.7.0
 
 WORKDIR /
 ENV PGDATA /var/lib/postgresql/data
-EXPOSE 80
+EXPOSE 80 4001
 
 # INSTALL DEPENDENCIES
 RUN apk add nginx nodejs postgresql yarn
@@ -19,7 +19,7 @@ USER root
 
 # CONFIGURE NGINX
 RUN mkdir /run/nginx
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY templates/nginx.conf /etc/nginx/nginx.conf
 
 # CONFIGURE CS1101S
 VOLUME /cs1101s-host
@@ -43,5 +43,5 @@ RUN su postgres -c "pg_ctl start" && mix ecto.setup
 WORKDIR /
 
 # RUN SCRIPT
-COPY docker-run.sh /docker-run.sh
+COPY templates/docker-run.sh /docker-run.sh
 CMD ./docker-run.sh

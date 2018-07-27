@@ -1,9 +1,9 @@
 CS1101S_REPO_LOC=
 
-build: Dockerfile secrets.exs .env docker-run.sh
+build: Dockerfile secrets.exs .env templates/docker-run.sh
 	docker build -t cadet .
 
-rebuild: Dockerfile secrets.exs .env docker-run.sh
+rebuild: Dockerfile secrets.exs .env templates/docker-run.sh
 	docker build -t cadet --no-cache .
 
 run:

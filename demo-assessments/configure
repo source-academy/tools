@@ -3,17 +3,14 @@
 # Configure the cs1101s repository URL (backend)
 read -p "Enter the absolute path to your cs1101s repository > " REPO_PATH
 [ -z "$REPO_PATH" ] && echo "  Cannot be empty." && exit 1
-sed "s|CS1101S_REPO_LOC=.*|CS1101S_REPO_LOC=$REPO_PATH|" Makefile.in > Makefile
+sed "s|CS1101S_REPO_LOC=.*|CS1101S_REPO_LOC=$REPO_PATH|" templates/Makefile.in > Makefile
 
 # Configure the IVLE key (backend, frontend)
 read -p "Enter your IVLE key (https://ivle.nus.edu.sg/LAPI/) > " IVLE_KEY
 [ -z "$IVLE_KEY" ] && echo "  Cannot be empty." && exit 1
-sed "s/    ivle_key:.*/    ivle_key: \"$IVLE_KEY\"/" secrets.exs > tmp && \
-    mv tmp secrets.exs
-sed "s/REACT_APP_IVLE_KEY=.*/REACT_APP_IVLE_KEY=$IVLE_KEY/" .env > temp && \
-    mv temp .env
+sed "s/    ivle_key:.*/    ivle_key: \"$IVLE_KEY\"/" templates/secrets.exs > secrets.exs
+sed "s/REACT_APP_IVLE_KEY=.*/REACT_APP_IVLE_KEY=$IVLE_KEY/" templates/.env > .env
 
-# Configure the guest account (TODO: remove this need)
 read -p "Enter the IVLE guest (or any) account user ID (leave empty to skip) > " GUEST_USERNAME
 read -p "Enter the IVLE guest (or any) account password (leave empty to skip) > " GUEST_PASSWORD
 sed "s/    guest_username.*/    guest_username: \"$GUEST_USERNAME\",/" secrets.exs > tmp && \

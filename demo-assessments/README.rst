@@ -66,3 +66,28 @@ For example,
     CONTAINER ID  IMAGE  ...(omitted)...  NAMES
     bb6acc335498  cadet  ...(omitted)...  hardcore_blackwell
     $ docker kill hardcore_blackwell
+
+Development
+===========
+cadet_ and `cadet-frontend`_ developers may wish to use this image to test their
+changes. In that case, add the following line in the Dockerfile, after the ``git
+clone`` step (and after the ``WORKDIR`` has been set correctly) of the relevant
+repository,
+
+.. code::
+
+    RUN git checkout $SHA1
+
+Where ``$SHA1`` is the SHA-1 hash of the commit you want to test. You may also
+use a branch name. You will then have to use the specially defined make command
+``rebuild``,
+
+.. code::
+
+    $ make rebuild
+
+Now, you can run the image as per usual.
+
+.. code::
+
+    $ make run

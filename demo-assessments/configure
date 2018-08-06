@@ -12,7 +12,10 @@ sed "s/    ivle_key:.*/    ivle_key: \"$IVLE_KEY\"/" templates/secrets.exs > sec
 sed "s/REACT_APP_IVLE_KEY=.*/REACT_APP_IVLE_KEY=$IVLE_KEY/" templates/.env > .env
 
 read -p "Enter the IVLE guest (or any) account user ID (leave empty to skip) > " GUEST_USERNAME
+# Turns off echo for password entry
+stty -echo
 read -p "Enter the IVLE guest (or any) account password (leave empty to skip) > " GUEST_PASSWORD
+stty echo
 sed "s/    guest_username.*/    guest_username: \"$GUEST_USERNAME\",/" secrets.exs > tmp && \
     mv tmp secrets.exs
 sed "s/    guest_password.*/    guest_password: \"$GUEST_PASSWORD\",/" secrets.exs > tmp && \
@@ -23,5 +26,5 @@ echo "  Configured the IVLE key to be at ${IVLE_KEY}."
 [ -z "$GUEST_USERNAME" ] || \
     echo "  Configured the guest username to be ${GUEST_USERNAME}."
 [ -z "$GUEST_PASSWORD" ] || \
-    echo "  Configured the guest password to be ${GUEST_PASSWORD}."
+    echo "  Configured the guest password."
 echo "  If this is incorrect, execute \`./configure\` again."

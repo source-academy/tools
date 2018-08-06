@@ -18,6 +18,10 @@ git commit -m 'Initial commit'
 # Start nginx
 nginx
 
-# Start backend
 cd /cadet
+# Import assessments from the cs1101s repository
+mix cadet.assessments.update
+
+# Start backend
 elixir --erl "--updater" -S mix phx.server
+

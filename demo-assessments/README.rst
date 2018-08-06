@@ -51,20 +51,11 @@ foreground, so that you can read the application logs from stdout.
 You should now be able to access a local copy of Source Academy at
 port 80 (open up your web browser, and key in *localhost*).
 
-To stop the docker container,
-
-1. Open up a new terminal window
-2. Find the name of the container
-3. Kill the container
-
-For example,
+To stop the docker container, open up a new terminal window and run:
 
 .. code::
 
-    $ docker ps
-    CONTAINER ID  IMAGE  ...(omitted)...  NAMES
-    bb6acc335498  cadet  ...(omitted)...  hardcore_blackwell
-    $ docker kill hardcore_blackwell
+    $ make stop
 
 Development
 ===========

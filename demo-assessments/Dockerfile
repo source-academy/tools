@@ -39,7 +39,7 @@ COPY secrets.exs /cadet/config
 WORKDIR /cadet
 RUN mix deps.get
 RUN mix compile
-RUN su postgres -c "pg_ctl start" && mix ecto.setup
+RUN su postgres -c "pg_ctl start" && mix ecto.drop && mix ecto.create && mix ecto.migrate
 WORKDIR /
 
 # RUN SCRIPT

@@ -1,4 +1,4 @@
-FROM bitwalker/alpine-elixir:1.7.0
+FROM bitwalker/alpine-elixir:1.6.6
 
 WORKDIR /
 ENV PGDATA /var/lib/postgresql/data

@@ -12,3 +12,8 @@ testing assessments XML files that you may be authoring.
 
 .. _cadet: https://github.com/source-academy/cadet/
 .. _`cadet-frontend`: https://github.com/source-academy/cadet-frontend/
+
+grader-api
+==========
+A wrapper to execute API calls to a public copy of the grader. This is useful
+for anyone writing grader programs for the assessment XMLs.

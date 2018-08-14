@@ -7,4 +7,7 @@ config :cadet,
     guest_username: "GST12345",
     guest_password: "PASSWORD",
     ivle_key: "IVL3_K3Y"
+  ],
+  autograder: [
+    lambda_name: "autograderLambdaName"
   ]

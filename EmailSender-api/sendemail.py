@@ -37,7 +37,7 @@ subject = 'CS1101S linting report, Mission '+ mission + " , Student: "+ student
 
 msg = MIMEMultipart('mixed')
 msg['Subject'] = subject
-msg['From'] = 'maxichu50@gmail.com <maxichu50@gmail.com>'
+msg['From'] = 'CS1101S <cs1101s@comp.nus.edu.sg>'
 msg['To'] = receiver
 
 #msg['To'] = ";".join(receiver)
@@ -85,10 +85,8 @@ if(filepath):
 
 smtp = smtplib.SMTP("smtp.gmail.com", 587)
 smtp.set_debuglevel(1)
-# smtp.connect(smtpserver)
-# 我们用set_debuglevel(1)就可以打印出和SMTP服务器交互的所有信息。
-# smtp.set_debuglevel(1)
-smtp.ehlo()  # 向Gamil发送SMTP 'ehlo' 命令
+
+smtp.ehlo()  
 smtp.starttls()
 smtp.login(username, password)
 smtp.sendmail(sender, receiver, msg.as_string())

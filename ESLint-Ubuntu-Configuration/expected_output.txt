@@ -1,0 +1,331 @@
+error: Expected indentation of 4 spaces but found 19 (indent) at test/conditional_expressions_01_bad.js:2:1:
+  1 | const aspect_ratio = landscape
+> 2 |                    ? 4 / 3
+    | ^
+  3 |                    : 3 / 4;
+  4 | 
+  5 | function A(x, y) {
+
+
+error: Expected indentation of 4 spaces but found 19 (indent) at test/conditional_expressions_01_bad.js:3:1:
+  1 | const aspect_ratio = landscape
+  2 |                    ? 4 / 3
+> 3 |                    : 3 / 4;
+    | ^
+  4 | 
+  5 | function A(x, y) {
+  6 |     return y === 0 ? 0 : x === 0 ? 2 * y : y === 1 ? 2 : A(x - 1, A(x, y - 1));
+
+
+2 errors found.
+2 errors potentially fixable with the `--fix` option.
+error: Expected indentation of 8 spaces but found 15 (indent) at test/conditional_expressions_02_bad.js:3:1:
+  1 | function A(x, y) {
+  2 |     return y === 0
+> 3 |                ? 0
+    | ^
+  4 |                : x === 0
+  5 |                      ? 2 * y
+  6 |                      : y === 1
+
+
+error: Expected indentation of 8 spaces but found 15 (indent) at test/conditional_expressions_02_bad.js:4:1:
+  2 |     return y === 0
+  3 |                ? 0
+> 4 |                : x === 0
+    | ^
+  5 |                      ? 2 * y
+  6 |                      : y === 1
+  7 |                            ? 2
+
+
+error: Expected indentation of 12 spaces but found 21 (indent) at test/conditional_expressions_02_bad.js:5:1:
+  3 |                ? 0
+  4 |                : x === 0
+> 5 |                      ? 2 * y
+    | ^
+  6 |                      : y === 1
+  7 |                            ? 2
+  8 |                            : A(x - 1, A(x, y - 1));
+
+
+error: Expected indentation of 12 spaces but found 21 (indent) at test/conditional_expressions_02_bad.js:6:1:
+  4 |                : x === 0
+  5 |                      ? 2 * y
+> 6 |                      : y === 1
+    | ^
+  7 |                            ? 2
+  8 |                            : A(x - 1, A(x, y - 1));
+  9 | }
+
+
+error: Expected indentation of 16 spaces but found 27 (indent) at test/conditional_expressions_02_bad.js:7:1:
+  5 |                      ? 2 * y
+  6 |                      : y === 1
+> 7 |                            ? 2
+    | ^
+  8 |                            : A(x - 1, A(x, y - 1));
+  9 | }
+
+
+error: Expected indentation of 16 spaces but found 27 (indent) at test/conditional_expressions_02_bad.js:8:1:
+  6 |                      : y === 1
+  7 |                            ? 2
+> 8 |                            : A(x - 1, A(x, y - 1));
+    | ^
+  9 | }
+
+
+6 errors found.
+6 errors potentially fixable with the `--fix` option.
+error: Unexpected space before function parentheses (space-before-function-paren) at test/conditional_statements_functions_01_bad.js:1:21:
+> 1 | function my_function (arg1, arg2, arg3) {
+    |                     ^
+  2 |     arg1 = 1;
+  3 | }
+  4 | 
+
+
+error: A space is required after ',' (comma-spacing) at test/conditional_statements_functions_01_bad.js:5:14:
+  3 | }
+  4 | 
+> 5 | my_function(1,2,3);
+    |              ^
+  6 | 
+  7 | my_function (1, 2, 3);
+  8 | 
+
+
+error: A space is required after ',' (comma-spacing) at test/conditional_statements_functions_01_bad.js:5:16:
+  3 | }
+  4 | 
+> 5 | my_function(1,2,3);
+    |                ^
+  6 | 
+  7 | my_function (1, 2, 3);
+  8 | 
+
+
+error: Unexpected newline between function name and paren (func-call-spacing) at test/conditional_statements_functions_01_bad.js:7:1:
+   5 | my_function(1,2,3);
+   6 | 
+>  7 | my_function (1, 2, 3);
+     | ^
+   8 | 
+   9 | function my_function( arg1, arg2, arg3 ) {
+  10 |     arg1 = 2;
+
+
+error: There should be no spaces inside this paren (space-in-parens) at test/conditional_statements_functions_01_bad.js:9:21:
+   7 | my_function (1, 2, 3);
+   8 | 
+>  9 | function my_function( arg1, arg2, arg3 ) {
+     |                     ^
+  10 |     arg1 = 2;
+  11 | }
+  12 | 
+
+
+error: There should be no spaces inside this paren (space-in-parens) at test/conditional_statements_functions_01_bad.js:9:40:
+   7 | my_function (1, 2, 3);
+   8 | 
+>  9 | function my_function( arg1, arg2, arg3 ) {
+     |                                        ^
+  10 |     arg1 = 2;
+  11 | }
+  12 | 
+
+
+error: There should be no spaces inside this paren (space-in-parens) at test/conditional_statements_functions_01_bad.js:13:12:
+  11 | }
+  12 | 
+> 13 | my_function( 1, 2, 3 );
+     |            ^
+  14 | 
+  15 | if ( x === 1 ) {
+  16 |     x = 3;
+
+
+error: There should be no spaces inside this paren (space-in-parens) at test/conditional_statements_functions_01_bad.js:13:22:
+  11 | }
+  12 | 
+> 13 | my_function( 1, 2, 3 );
+     |                      ^
+  14 | 
+  15 | if ( x === 1 ) {
+  16 |     x = 3;
+
+
+error: There should be no spaces inside this paren (space-in-parens) at test/conditional_statements_functions_01_bad.js:15:4:
+  13 | my_function( 1, 2, 3 );
+  14 | 
+> 15 | if ( x === 1 ) {
+     |    ^
+  16 |     x = 3;
+  17 | }
+
+
+error: There should be no spaces inside this paren (space-in-parens) at test/conditional_statements_functions_01_bad.js:15:14:
+  13 | my_function( 1, 2, 3 );
+  14 | 
+> 15 | if ( x === 1 ) {
+     |              ^
+  16 |     x = 3;
+  17 | }
+
+
+10 errors found.
+10 errors potentially fixable with the `--fix` option.
+error: Expected { after 'if' condition (curly) at test/curly_braces_02_bad.js:4:1:
+  2 | var y = 1;
+  3 | 
+> 4 | if (x > y)
+    | ^
+  5 |     return x + y;
+  6 | else
+  7 |     return x * y;
+
+
+error: Expected { after 'else' (curly) at test/curly_braces_02_bad.js:6:1:
+  4 | if (x > y)
+  5 |     return x + y;
+> 6 | else
+    | ^
+  7 |     return x * y;
+  8 | 
+  9 | 
+
+
+2 errors found.
+2 errors potentially fixable with the `--fix` option.
+error: Expected { after 'if' condition (curly) at test/curly_braces_03_bad.js:4:1:
+  2 | var y = 1;
+  3 | 
+> 4 | if (x > y) return x + y;
+    | ^
+  5 | else return x * y;
+  6 | 
+  7 | 
+
+
+error: Expected { after 'else' (curly) at test/curly_braces_03_bad.js:5:1:
+  3 | 
+  4 | if (x > y) return x + y;
+> 5 | else return x * y;
+    | ^
+  6 | 
+  7 | 
+  8 | 
+
+
+2 errors found.
+2 errors potentially fixable with the `--fix` option.
+error: Expected indentation of 8 spaces but found 22 (indent) at test/function_definition_expressions_02_bad.js:3:1:
+  1 | function count_buttons(garment) {
+  2 |     return accumulate((sleaves, total) =>
+> 3 |                       delicate_calculation(sleaves + total),
+    | ^
+  4 |                       0,
+  5 |                       map(jacket =>
+  6 |                           is_checkered(jacket)
+
+
+error: Expected indentation of 30 spaces but found 26 (indent) at test/function_definition_expressions_02_bad.js:7:1:
+   5 |                       map(jacket =>
+   6 |                           is_checkered(jacket)
+>  7 |                           ? count_buttons(jacket)
+     | ^
+   8 |                           : 1,
+   9 |                           garment));
+  10 | }
+
+
+error: Expected indentation of 30 spaces but found 26 (indent) at test/function_definition_expressions_02_bad.js:8:1:
+   6 |                           is_checkered(jacket)
+   7 |                           ? count_buttons(jacket)
+>  8 |                           : 1,
+     | ^
+   9 |                           garment));
+  10 | }
+
+
+3 errors found.
+3 errors potentially fixable with the `--fix` option.
+error: Parsing error: Unexpected token => at test/function_definition_expressions_03_bad.js:4:7:
+  2 |     return accumulate(
+  3 | 	    (sleaves, total) 
+> 4 | 		    => delicate_calculation(sleaves + total),
+    | 		    ^
+  5 | 		0,
+  6 | 		map(jacket 
+  7 | 		    => is_checkered(jacket)
+
+
+1 error found.
+error: Line 1 exceeds the maximum line length of 80 (max-len) at test/line_length_00_bad.js:1:1:
+> 1 | var a = 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111;
+    | ^
+
+
+1 error found.
+error: 'x' is already declared in the upper scope (no-shadow) at test/nesting_00_bad.js:3:12:
+  1 | const x = 1;
+  2 | 
+> 3 | function f(x) {
+    |            ^
+  4 |     x = x + 1;
+  5 | }
+
+
+1 error found.
+error: 'x' is already declared in the upper scope (no-shadow) at test/nesting_01_bad.js:2:12:
+  1 | const x = 1;
+> 2 | function f(x) {
+    |            ^
+  3 |     return x => (1);
+  4 | }
+
+
+error: 'x' is already declared in the upper scope (no-shadow) at test/nesting_01_bad.js:3:12:
+  1 | const x = 1;
+  2 | function f(x) {
+> 3 |     return x => (1);
+    |            ^
+  4 | }
+
+
+2 errors found.
+error: Parsing error: Identifier 'x' has already been declared at test/nesting_02_bad.js:4:11:
+  2 | 
+  3 | function f(x) {
+> 4 |     const x = 1;
+    |           ^
+  5 | }
+
+
+1 error found.
+error: Infix operators must be spaced (space-infix-ops) at test/operators_01_bad.js:1:8:
+> 1 | const x=1+1;
+    |        ^
+  2 | 
+  3 | const negative_x = - x;
+  4 | 
+
+
+error: Infix operators must be spaced (space-infix-ops) at test/operators_01_bad.js:1:10:
+> 1 | const x=1+1;
+    |          ^
+  2 | 
+  3 | const negative_x = - x;
+  4 | 
+
+
+error: Infix operators must be spaced (space-infix-ops) at test/operators_01_bad.js:5:17:
+  3 | const negative_x = - x;
+  4 | 
+> 5 | return (x === 0)?"zero":"not zero";
+    |                 ^
+
+
+3 errors found.
+3 errors potentially fixable with the `--fix` option.

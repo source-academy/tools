@@ -26,6 +26,14 @@ VOLUME /cs1101s-host
 RUN git config --global user.email "docker@cadet.com"
 RUN git config --global user.name "Cadet"
 
+# CONFIGURE JS-SLANG FOR CHAPTER 4
+RUN git clone https://github.com/source-academy/js-slang
+WORKDIR /js-slang
+RUN git checkout chapter-four
+RUN yarn
+RUN yarn build
+WORKDIR /
+
 # CONFIGURE FRONTEND
 RUN git clone https://github.com/source-academy/cadet-frontend
 WORKDIR /cadet-frontend
@@ -35,6 +43,9 @@ WORKDIR /
 
 # CONFIGURE BACKEND
 RUN git clone https://github.com/source-academy/cadet /cadet
+RUN cd cadet 
+RUN git checkout e0877e7dd7db72e40aca3d26115ac96fcd82bd8e
+RUN cd ../
 COPY secrets.exs /cadet/config
 WORKDIR /cadet
 RUN mix deps.get

@@ -38,16 +38,15 @@ WORKDIR /
 RUN git clone https://github.com/source-academy/cadet-frontend
 WORKDIR /cadet-frontend
 COPY .env /cadet-frontend/
+RUN git checkout test-chapter-4
 RUN yarn
 WORKDIR /
 
 # CONFIGURE BACKEND
-RUN git clone https://github.com/source-academy/cadet /cadet
-RUN cd cadet 
-RUN git checkout e0877e7dd7db72e40aca3d26115ac96fcd82bd8e
-RUN cd ../
-COPY secrets.exs /cadet/config
+RUN git clone https://github.com/source-academy/cadet
 WORKDIR /cadet
+RUN git checkout master
+COPY secrets.exs ./config
 RUN mix deps.get
 RUN mix compile
 RUN su postgres -c "pg_ctl start" && mix ecto.drop && mix ecto.create && mix ecto.migrate

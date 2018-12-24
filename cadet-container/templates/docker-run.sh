@@ -18,6 +18,10 @@ cd /
 
 if [ -z "$CONFIGURE_SECRETS" ]; then
   cp -a /cadet-host /cadet
+
+  sed -e "s|    cs1101s_repository:.*|    cs1101s_repository: \"/cs1101s\",|" \
+      -e "s|    cs1101s_rsa_key.*|    cs1101s_rsa_key: \"/\",|" \
+      -i cadet/config/secrets.exs
 fi
 
 # Start frontend

@@ -1,0 +1,23 @@
+CS1101S_REPO_LOC=
+MOUNT_CADET_REPO=
+MOUNT_CADET_FRONTEND_REPO=
+
+build: Dockerfile secrets.exs .env templates/docker-run.sh
+	docker build -t cadet .
+
+rebuild: Dockerfile secrets.exs .env templates/docker-run.sh
+	docker build -t cadet --no-cache .
+
+run:
+	docker run \
+		-p 80:80 -p 4000:4001 \
+		--mount type=bind,source=$(CS1101S_REPO_LOC),target=/cs1101s-host,readonly \
+		$(MOUNT_CADET_REPO) $(MOUNT_CADET_FRONTEND_REPO) \
+		cadet
+
+all:
+	make build
+	make run
+
+stop:
+	docker stop $$(docker ps | grep cadet | awk '{print $$1;}')

@@ -1,3 +1,8 @@
 demo-assessments/Makefile
 demo-assessments/.env
 demo-assessments/secrets.exs
+cadet-container/Makefile
+cadet-container/docker-run.sh
+cadet-container/docker-config.sh
+cadet-container/.env
+cadet-container/secrets.exs

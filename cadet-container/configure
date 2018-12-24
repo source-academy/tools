@@ -1,0 +1,124 @@
+#! /usr/bin/env sh
+
+rm -rf var
+
+# Configure the cs1101s repository URL (backend)
+read -p "Enter the path to your cs1101s (assessments xml, etc.) repository > " CS1101S_REPO_PATH
+[ -z "$CS1101S_REPO_PATH" ] && echo "  Cannot be empty." && exit 1
+CS1101S_REPO_PATH=$(readlink -f "$CS1101S_REPO_PATH")
+
+# Configure the cadet repository URL (backend)
+read -p "Enter the path to your cadet repository (leave blank to skip) > " CADET_REPO_PATH
+if [ -z "$CADET_REPO_PATH" ]; then
+  mkdir -p var/cadet
+  CADET_REPO_PATH=$(readlink -f var/cadet)
+  CONFIGURE_SECRETS="y"
+else
+  CADET_REPO_PATH=$(readlink -f "$CADET_REPO_PATH")
+  USING_LOCAL_CADET_REPO=1
+  # read -p "You have specified to use a local copy of cadet. Would you like to configure cadet/secrets.exs? (y/N or leave blank for N) > " CONFIGURE_SECRETS
+fi
+
+# Configure the cadet-frontend repository URL (frontend)
+read -p "Enter the path to your cadet-frontend repository (leave blank to skip) > " CADET_FRONTEND_REPO_PATH
+if [ -z "$CADET_FRONTEND_REPO_PATH" ]; then
+  mkdir -p var/cadet-frontend
+  CADET_FRONTEND_REPO_PATH=$(readlink -f var/cadet-frontend)
+  CONFIGURE_ENV="y"
+else
+  CADET_FRONTEND_REPO_PATH=$(readlink -f "$CADET_FRONTEND_REPO_PATH")
+  USING_LOCAL_CADET_FRONTEND_REPO=1
+  # read -p "You have specified to use a local copy of cadet-frontend. Would you like to configure cadet-frontend/.env? (y/N or leave blank for N) > " CONFIGURE_ENV
+fi
+
+if [ '(' "$CONFIGURE_ENV" = "y" ')' -o '(' "$CONFIGURE_SECRETS" = "y" ')' ]; then
+  # Configure the IVLE key (backend, frontend)
+  read -p "Enter your IVLE key ( https://ivle.nus.edu.sg/LAPI/ ) > " IVLE_KEY
+  [ -z "$IVLE_KEY" ] && echo "  Cannot be empty." && exit 1
+fi
+
+if [ "$CONFIGURE_ENV" = "y" ]; then
+  # Configure the backend URL (backend)
+  read -p "Enter the backend URL (leave empty for default http://localhost:4000) > " BACKEND_URL
+  [ -z "$BACKEND_URL" ] && BACKEND_URL='http://localhost:4000'
+fi
+
+if [ "$CONFIGURE_SECRETS" = "y" ]; then
+  read -p "Enter the IVLE guest (or any) account user ID (leave empty to skip) > " GUEST_USERNAME
+  # Turns off echo for password entry
+  stty -echo
+  read -p "Enter the IVLE guest (or any) account password (password will not be shown, leave empty to skip) > " GUEST_PASSWORD
+  stty echo
+  echo ""
+else
+  echo "Not configuring .env. Please ensure .env is configured at the cadet-frontend repo."
+fi
+
+# Configure the files
+
+[ -z "$USING_LOCAL_CADET_REPO" ] || MOUNT_CADET_REPO="--mount type=bind,source=$CADET_REPO_PATH,target=/cadet-host,readonly"
+[ -z "$USING_LOCAL_CADET_FRONTEND_REPO" ] || MOUNT_CADET_FRONTEND_REPO="--mount type=bind,source=$CADET_FRONTEND_REPO_PATH,target=/cadet-frontend-host,readonly"
+
+rm -f Makefile secrets.exs .env
+sed -e "s|CS1101S_REPO_LOC=.*|CS1101S_REPO_LOC=$CS1101S_REPO_PATH|" \
+    -e "s|MOUNT_CADET_REPO=.*|MOUNT_CADET_REPO=$MOUNT_CADET_REPO|" \
+    -e "s|MOUNT_CADET_FRONTEND_REPO=.*|MOUNT_CADET_FRONTEND_REPO=$MOUNT_CADET_FRONTEND_REPO|" \
+    templates/Makefile.in > Makefile
+
+if [ "$CONFIGURE_ENV" = "y" ]; then
+  sed -e "s|REACT_APP_IVLE_KEY=.*|REACT_APP_IVLE_KEY=$IVLE_KEY|" \
+      -e "s|REACT_APP_BACKEND_URL=.*|REACT_APP_BACKEND_URL=$BACKEND_URL|" \
+      templates/.env > .env
+else
+  echo 'Unused' > .env
+fi
+
+if [ "$CONFIGURE_SECRETS" = "y" ]; then
+  sed -e "s|    ivle_key:.*|    ivle_key: \"$IVLE_KEY\"|" \
+      -e "s|    guest_username.*|    guest_username: \"$GUEST_USERNAME\",|" \
+      -e "s|    guest_password.*|    guest_password: \"$GUEST_PASSWORD\",|" \
+      templates/secrets.exs > secrets.exs
+else
+  echo 'Unused' > secrets.exs
+fi
+
+sed -e "s|CONFIGURE_SECRETS=.*|CONFIGURE_SECRETS=$CONFIGURE_SECRETS|" \
+    -e "s|CONFIGURE_ENV=.*|CONFIGURE_ENV=$CONFIGURE_ENV|" \
+  templates/docker-run.sh > docker-run.sh
+chmod +x docker-run.sh
+
+sed -e "s|CONFIGURE_SECRETS=.*|CONFIGURE_SECRETS=$CONFIGURE_SECRETS|" \
+    -e "s|CONFIGURE_ENV=.*|CONFIGURE_ENV=$CONFIGURE_ENV|" \
+  templates/docker-config.sh > docker-config.sh
+chmod +x docker-config.sh
+
+echo ""
+
+echo "  Configured the cs1101s repository to be at ${CS1101S_REPO_PATH}."
+
+if [ -n "$CADET_REPO_PATH" ]; then
+  echo "  Configured the cadet repository to be at ${CADET_REPO_PATH}."
+else
+  echo "  Configured the cadet repository to use github remote."
+fi
+
+if [ -n "$CADET_FRONTEND_REPO_PATH" ]; then
+  echo "  Configured the cadet-frontend repository to be at ${CADET_FRONTEND_REPO_PATH}."
+else
+  echo "  Configured the cadet-frontend repository to use github remote."
+fi
+
+if [ "$CONFIGURE_ENV" = "y" ]; then
+  echo "  Configured cadet-frontend/.env"
+  echo "    Configured the IVLE key to be at ${IVLE_KEY}."
+  echo "    Configured the backend URL to be at ${BACKEND_URL}."
+fi
+
+if [ "$CONFIGURE_SECRETS" = "y" ]; then
+  echo "  Configured cadet/secrets.exs"
+  echo "    Configured the IVLE key to be at ${IVLE_KEY}."
+  [ -z "$GUEST_USERNAME" ] || echo "    Configured the guest username to be ${GUEST_USERNAME}."
+  [ -z "$GUEST_PASSWORD" ] || echo "    Configured the guest password."
+fi
+
+echo "  If this is incorrect, execute \`./configure\` again."

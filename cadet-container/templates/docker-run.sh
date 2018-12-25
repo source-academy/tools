@@ -39,7 +39,14 @@ git commit -m 'Initial commit'
 # Start nginx
 nginx
 
+# Start cadet
 cd /cadet
+
+# Set up cadet deps and DB
+mix deps.get
+mix compile
+mix ecto.drop && mix ecto.create && mix ecto.migrate
+
 # Import assessments from the cs1101s repository
 mix cadet.assessments.update
 

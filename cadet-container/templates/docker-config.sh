@@ -9,11 +9,6 @@ CONFIGURE_ENV=
 if [ "$CONFIGURE_SECRETS" = "y" ]; then
   git clone https://github.com/source-academy/cadet cadet
   cp secrets.exs cadet/config
-  cd cadet
-  mix deps.get
-  mix compile
-  su postgres -c "pg_ctl start" && mix ecto.drop && mix ecto.create && mix ecto.migrate
-  cd ..
 fi
 
 # CONFIGURE FRONTEND

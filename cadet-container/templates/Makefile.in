@@ -20,4 +20,4 @@ all:
 	make run
 
 stop:
-	docker stop $$(docker ps | grep cadet | awk '{print $$1;}')
+	docker rm $(docker stop $(docker ps -a -q --filter ancestor=cadet --format="{{.ID}}"))

@@ -31,6 +31,14 @@ else
   # read -p "You have specified to use a local copy of cadet-frontend. Would you like to configure cadet-frontend/.env? (y/N or leave blank for N) > " CONFIGURE_ENV
 fi
 
+if [ "$CONFIGURE_SECRETS" != "y" ]; then
+  echo "Not configuring secrets.exs. Please ensure secrets.exs is configured at the cadet repo."
+fi
+
+if [ "$CONFIGURE_ENV" != "y" ]; then
+  echo "Not configuring .env. Please ensure .env is configured at the cadet-frontend repo."
+fi
+
 if [ '(' "$CONFIGURE_ENV" = "y" ')' -o '(' "$CONFIGURE_SECRETS" = "y" ')' ]; then
   # Configure the IVLE key (backend, frontend)
   read -p "Enter your IVLE key ( https://ivle.nus.edu.sg/LAPI/ ) > " IVLE_KEY
@@ -50,8 +58,6 @@ if [ "$CONFIGURE_SECRETS" = "y" ]; then
   read -p "Enter the IVLE guest (or any) account password (password will not be shown, leave empty to skip) > " GUEST_PASSWORD
   stty echo
   echo ""
-else
-  echo "Not configuring .env. Please ensure .env is configured at the cadet-frontend repo."
 fi
 
 # Configure the files

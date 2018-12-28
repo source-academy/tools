@@ -16,4 +16,3 @@ if [ "$CONFIGURE_ENV" = "y" ]; then
   git clone https://github.com/source-academy/cadet-frontend cadet-frontend
   cp .env cadet-frontend
 fi
-

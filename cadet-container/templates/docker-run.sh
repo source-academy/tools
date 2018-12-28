@@ -18,7 +18,7 @@ if [ -z "$CONFIGURE_ENV" ]; then
 fi
 cd /cadet-frontend
 rm -r node_modules
-yarn 2>&1 > /log/cadet-frontend-yarn.log
+yarn > /log/cadet-frontend-yarn.log 2>&1
 cd /
 
 if [ -z "$CONFIGURE_SECRETS" ]; then
@@ -31,7 +31,7 @@ fi
 
 # Start frontend
 cd /cadet-frontend
-nohup yarn start 2>&1 > /log/cadet-frontend.log &
+nohup yarn start > /log/cadet-frontend.log 2>&1 &
 
 # Configure CS1101s
 cp -r /cs1101s-host /cs1101s
@@ -39,7 +39,7 @@ rm -rf /cs1101s/.git
 cd /cs1101s
 git init .
 git add *
-git commit -m 'Initial commit' 2>&1 > /log/cadet-frontend-git.log
+git commit -m 'Initial commit' > /log/cadet-frontend-git.log 2>&1
 
 # Start nginx
 nginx
@@ -48,15 +48,15 @@ nginx
 cd /cadet
 
 # Set up cadet deps and DB
-mix deps.get 2>&1 > /log/cadet-deps.get.log
-mix compile 2>&1 > /log/cadet-compile.log
+mix deps.get > /log/cadet-deps.get.log 2>&1
+mix compile > /log/cadet-compile.log 2>&1
 
-mix ecto.drop 2>&1 > /log/cadet-ecto.drop.log && \
-mix ecto.create 2>&1 > /log/cadet-ecto.create.log && \
-mix ecto.migrate 2>&1 > /log/cadet-ecto.migrate.log
+mix ecto.drop > /log/cadet-ecto.drop.log 2>&1 && \
+mix ecto.create > /log/cadet-ecto.create.log 2>&1 && \
+mix ecto.migrate > /log/cadet-ecto.migrate.log 2>&1
 
 # Import assessments from the cs1101s repository
-mix cadet.assessments.update 2>&1 > /log/cadet-cadet.assessments.update.log
+mix cadet.assessments.update > /log/cadet-cadet.assessments.update.log 2>&1
 
 # Start backend
-elixir --erl "--updater" -S mix phx.server 2>&1 > /log/cadet.log
+elixir --erl "--updater" -S mix phx.server > /log/cadet.log 2>&1

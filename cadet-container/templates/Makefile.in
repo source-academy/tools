@@ -9,9 +9,13 @@ rebuild: Dockerfile secrets.exs .env templates/docker-run.sh
 	docker build -t cadet --no-cache .
 
 run:
+	CUR_DATE=$$(date +"%y%m%d-%H%M%S"); \
+	LOG_LOC=$$(mktemp -d log-$${CUR_DATE}---XXX); \
+	LOG_LOC=$$(readlink --canonicalize-existing $${LOG_LOC}); \
 	docker run \
 		-p 80:80 -p 4000:4001 \
 		--mount type=bind,source=$(CS1101S_REPO_LOC),target=/cs1101s-host,readonly \
+		--mount type=bind,source=$${LOG_LOC},target=/log \
 		$(MOUNT_CADET_REPO) $(MOUNT_CADET_FRONTEND_REPO) \
 		cadet
 
@@ -20,4 +24,4 @@ all:
 	make run
 
 stop:
-	docker rm $(docker stop $(docker ps -a -q --filter ancestor=cadet --format="{{.ID}}"))
+	docker rm $$(docker stop $$(docker ps -a -q --filter ancestor=cadet --format="{{.ID}}"))

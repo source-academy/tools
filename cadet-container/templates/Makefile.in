@@ -1,6 +1,9 @@
 CS1101S_REPO_LOC=
 MOUNT_CADET_REPO=
 MOUNT_CADET_FRONTEND_REPO=
+WEB_PORT=
+API_PORT=
+POSTGRES_PORT=
 
 build: Dockerfile secrets.exs .env templates/docker-run.sh
 	docker build -t cadet .
@@ -13,7 +16,7 @@ run:
 	LOG_LOC=$$(mktemp -d log-$${CUR_DATE}---XXX); \
 	LOG_LOC=$$(readlink --canonicalize-existing $${LOG_LOC}); \
 	docker run \
-		-p 80:80 -p 4000:4001 \
+		-p ${WEB_PORT}:80 -p ${API_PORT}:4001 -p ${POSTGRES_PORT}:5234 \
 		--mount type=bind,source=$(CS1101S_REPO_LOC),target=/cs1101s-host,readonly \
 		--mount type=bind,source=$${LOG_LOC},target=/log \
 		$(MOUNT_CADET_REPO) $(MOUNT_CADET_FRONTEND_REPO) \

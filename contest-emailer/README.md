@@ -1,7 +1,8 @@
 Note: This repository needs cleanup
 
 ## Pre-requisites
-Update the files inside the students folder first.
+ - Update the files inside the students folder first.
+ - An AWS Access Key ID and AWS Secret Key with SES permission is required
 
 ## Program Extractor
 Run this to extract contest submissions and anonymize them.

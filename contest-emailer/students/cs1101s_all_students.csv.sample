@@ -1,0 +1,21 @@
+Name,Student Number,Email,User ID,Faculty,Matric Year,Programme
+AAA AAA AAA,A0010101A,a@u.nus.edu,a,School of Computing,2018,COM1
+BBB BBB BBB,A0020202B,b@u.nus.edu,b,School of Computing,2018,COM1
+CCC CCC CCC,A0030303C,c@u.nus.edu,c,School of Computing,2018,COM1
+DDD DDD DDD,A0040404D,d@u.nus.edu,d,School of Computing,2018,COM1
+EEE EEE EEE,A0050505E,e@u.nus.edu,e,School of Computing,2018,COM1
+FFF FFF FFF,A0060606F,f@u.nus.edu,f,School of Computing,2018,COM1
+GGG GGG GGG,A0070707G,g@u.nus.edu,g,School of Computing,2018,COM1
+HHH HHH HHH,A0080808H,h@u.nus.edu,h,School of Computing,2018,COM1
+III III III,A0090909I,i@u.nus.edu,i,School of Computing,2018,COM1
+JJJ JJJ JJJ,A0101010J,j@u.nus.edu,j,School of Computing,2018,COM1
+KKK KKK KKK,A0111111K,k@u.nus.edu,k,School of Computing,2018,COM1
+LLL LLL LLL,A0121212L,l@u.nus.edu,l,School of Computing,2018,COM1
+MMM MMM MMM,A0131313M,m@u.nus.edu,m,School of Computing,2018,COM1
+NNN NNN NNN,A0141414N,n@u.nus.edu,n,Faculty of Science,2018,"SCI1,COM1"
+OOO OOO OOO,A0151515O,o@u.nus.edu,o,School of Computing,2018,COM1
+PPP PPP PPP,A0161616P,p@u.nus.edu,p,School of Computing,2018,COM1
+QQQ QQQ QQQ,A0171717Q,q@u.nus.edu,q,School of Computing,2018,COM1
+RRR RRR RRR,A0181818R,r@u.nus.edu,r,School of Computing,2018,COM1
+SSS SSS SSS,A0191919S,s@u.nus.edu,s,School of Computing,2018,COM1
+TTT TTT TTT,A0202020T,t@u.nus.edu,t,School of Computing,2018,COM1

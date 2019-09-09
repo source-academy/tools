@@ -44,7 +44,7 @@ const student_selections = csv.parse(fs.readFileSync('./students/cs1101s_selecti
 createTransporter()
 .then(transporter => {
     student_selections.forEach(student => {
-        const recipients = student['Email'];
+        const recipient = student['Email'];
         const group = groups.filter(group => group.name === student.group)[0];
 
         const targetIds = student.submissions.split(', ').map(Number);
@@ -62,7 +62,7 @@ createTransporter()
 
         const mailOptions = {
             from: 'cs1101s@comp.nus.edu.sg',
-            to: recipients.join(', '),
+            to: recipient,
             cc: 'cs1101s@comp.nus.edu.sg',
             subject: `The Most Rhapsodic Tones`,
             html: `

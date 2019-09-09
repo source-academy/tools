@@ -1,0 +1,20 @@
+Timestamp,Email Address,What is your full Student Number (previously known as Matriculation Number)? (Starts with A and ends with letter),What is the ranking of the assigned entries? [Entry 1],What is the ranking of the assigned entries? [Entry 2],What is the ranking of the assigned entries? [Entry 3],What is the ranking of the assigned entries? [Entry 4],What is the ranking of the assigned entries? [Entry 5],What is the ranking of the assigned entries? [Entry 6],What is the ranking of the assigned entries? [Entry 7],What is the ranking of the assigned entries? [Entry 8],What is the ranking of the assigned entries? [Entry 9],What is the ranking of the assigned entries? [Entry 10]
+10/10/2018 14:09:02,a@u.nus.edu,A0010101A,6th,4th,10th,5th,3rd,8th,1st,2nd,7th,9th
+10/10/2018 14:15:12,b@u.nus.edu,A0020202B,3rd,5th,9th,10th,6th,4th,7th,8th,1st,2nd
+10/10/2018 14:16:03,c@u.nus.edu,A0030303C,1st,6th,4th,5th,10th,2nd,9th,7th,8th,3rd
+10/10/2018 14:39:30,d@u.nus.edu,A0040404D,5th,2nd,8th,9th,3rd,4th,7th,6th,10th,1st
+10/10/2018 14:42:05,e@u.nus.edu,A0050505E,3rd,4th,5th,6th,2nd,1st,9th,7th,8th,10th
+10/10/2018 15:02:20,f@u.nus.edu,A0060606F,3rd,1st,6th,9th,4th,5th,2nd,10th,8th,7th
+10/10/2018 15:16:54,g@gmail.com,A0070707G,7th,6th,5th,2nd,9th,4th,10th,1st,3rd,8th
+10/10/2018 15:21:09,h@u.nus.edu,A0080808H,4th,5th,1st,8th,10th,6th,2nd,7th,9th,3rd
+10/10/2018 15:48:01,i@u.nus.edu,A0090909I,2nd,7th,10th,8th,4th,9th,5th,6th,3rd,1st
+10/10/2018 17:21:52,j@u.nus.edu,A0101010J,8th,10th,5th,3rd,4th,2nd,7th,9th,1st,6th
+10/10/2018 22:01:56,k@u.nus.edu,A0111111K,5th,2nd,3rd,1st,6th,10th,8th,9th,7th,4th
+10/11/2018 10:31:53,l@u.nus.edu,A0121212L,5th,10th,2nd,8th,9th,1st,3rd,6th,7th,4th
+10/11/2018 10:39:30,m@u.nus.edu,A0131313M,8th,4th,2nd,7th,10th,9th,3rd,6th,1st,5th
+10/11/2018 10:47:09,n@u.nus.edu,A0141414N,2nd,3rd,10th,1st,4th,5th,9th,8th,6th,7th
+10/11/2018 11:06:25,o@u.nus.edu,A0151515O,4th,8th,6th,9th,3rd,1st,10th,5th,2nd,7th
+10/11/2018 11:07:42,p@u.nus.edu,A0161616P,7th,6th,10th,9th,5th,3rd,1st,4th,8th,2nd
+10/11/2018 11:09:50,q@u.nus.edu,A0171717Q,5th,1st,10th,6th,7th,3rd,4th,8th,2nd,9th
+10/11/2018 11:24:18,r@gmail.com,A0181818R,4th,1st,7th,2nd,3rd,9th,10th,8th,5th,6th
+10/11/2018 12:10:25,s@u.nus.edu,A0191919S,3rd,7th,2nd,6th,5th,1st,8th,9th,10th,4th

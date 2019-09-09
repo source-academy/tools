@@ -7,8 +7,8 @@ const nodemailer = require('nodemailer');
 //--------------
 // Configuration
 //--------------
-const username = process.env.AWS_ACCESS_KEY_ID;
-const password = process.env.AWS_SECRET_ACCESS_KEY;
+const user = process.env.AWS_ACCESS_KEY_ID;
+const pass = process.env.AWS_SECRET_ACCESS_KEY;
 
 const isTesting = !!process.env.IS_TESTING;
 const smtpHost = 'email-smtp.us-west-2.amazonaws.com';
